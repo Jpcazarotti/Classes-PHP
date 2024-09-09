@@ -193,3 +193,80 @@ class paciente
     public function cancelarConsulta() {}
     public function visuHistConsultas() {}
 }
+
+class Psicologo {
+    // Atributos
+    private $id;
+    private $nome;
+    private $email;
+    private $CRP;
+    private $especialidade;
+    private $agenda = [];
+ 
+    // Construtor
+    public function __construct($id, $nome, $email, $CRP, $especialidade) {
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->CRP = $CRP;
+        $this->especialidade = $especialidade;
+    }
+ 
+    // Métodos
+    public function visualizarHorariosDisponiveis() {
+        // Exemplo de visualização de horários disponíveis na agenda
+        foreach ($this->agenda as $horario) {
+            echo "Horário: " . $horario['data'] . " - " . $horario['hora'] . "<br>";
+        }
+    }
+ 
+    public function adicionarHorarioDisponivel($data, $hora) {
+        // Adiciona um horário disponível à agenda
+        $this->agenda[] = ['data' => $data, 'hora' => $hora];
+        echo "Horário disponível adicionado: $data às $hora.<br>";
+    }
+ 
+    public function visualizarAgenda() {
+        // Visualização completa da agenda
+        if (empty($this->agenda)) {
+            echo "Nenhum horário agendado.<br>";
+        } else {
+            foreach ($this->agenda as $consulta) {
+                echo "Consulta marcada para: " . $consulta['data'] . " às " . $consulta['hora'] . "<br>";
+            }
+        }
+    }
+ 
+    // Métodos getters e setters
+    public function getNome() {
+        return $this->nome;
+    }
+ 
+    public function setNome($nome) {
+        $this->nome = $nome;
+    }
+ 
+    public function getEmail() {
+        return $this->email;
+    }
+ 
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+ 
+    public function getCRP() {
+        return $this->CRP;
+    }
+ 
+    public function setCRP($CRP) {
+        $this->CRP = $CRP;
+    }
+ 
+    public function getEspecialidade() {
+        return $this->especialidade;
+    }
+ 
+    public function setEspecialidade($especialidade) {
+        $this->especialidade = $especialidade;
+    }
+}
