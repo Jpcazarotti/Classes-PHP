@@ -94,3 +94,102 @@ class Intituicoes
         ";
     }
 }
+class Eventos
+{
+    private $titulo;
+    private $descricao;
+    private $data;
+    private $localizacao;
+    private $organizadores;
+    private $participantes = [];
+
+    public function __construct($titulo, $descricao, $data, $localizacao, $organizadores)
+    {
+        $this->titulo = $titulo;
+        $this->descricao = $descricao;
+        $this->data = $data;
+        $this->localizacao = $localizacao;
+        $this->organizadores = $organizadores;
+    }
+
+    public function criarEvento($usuario)
+    {
+        if ($usuario->tipoUsuario == 'adm') {
+            echo "Evento '$this->titulo' criado com sucesso!";
+        } else {
+            echo "Você não tem permissão para criar eventos.";
+        }
+    }
+
+    public function editarEvento($usuario, $novosDados)
+    {
+        if ($usuario->tipoUsuario == 'adm') {
+            $this->titulo = $novosDados['titulo'];
+            $this->descricao = $novosDados['descricao'];
+            $this->data = $novosDados['data'];
+            $this->localizacao = $novosDados['localizacao'];
+            $this->organizadores = $novosDados['organizadores'];
+            echo "Evento '$this->titulo' editado com sucesso!";
+        } else {
+            echo "Você não tem permissão para editar eventos.";
+        }
+    }
+
+    public function excluirEvento($usuario)
+    {
+        if ($usuario->tipoUsuario == 'adm') {
+            echo "Evento '$this->titulo' excluído com sucesso!";
+        } else {
+            echo "Você não tem permissão para excluir eventos.";
+        }
+    }
+
+    public function addParticipante($participante)
+    {
+        $this->participantes[] = $participante;
+        echo "Participante '$participante' adicionado ao evento '$this->titulo'.";
+    }
+
+    public function removerParticipante($usuario, $participante)
+    {
+        if ($usuario->tipoUsuario == 'adm') {
+            if (($key = array_search($participante, $this->participantes)) !== false) {
+                unset($this->participantes[$key]);
+                echo "Participante '$participante' removido do evento '$this->titulo'.";
+            }
+        } else {
+            echo "Você não tem permissão para remover participantes.";
+        }
+    }
+
+    public static function listarEventos()
+    {
+        echo "Listagem de eventos...";
+    }
+
+    public function detalhesEventos()
+    {
+        echo "Detalhes do evento '$this->titulo': $this->descricao, em $this->data, localizado em $this->localizacao.";
+    }
+
+    public static function buscarEventosPorData($data)
+    {
+        echo "Buscando eventos na data: $data...";
+    }
+}
+class paciente
+{
+    private $id;
+    private $deficiencia;
+    private $telefone;
+
+    public function __construct($id, $deficiencia, $telefone)
+    {
+        $this->id = $id;
+        $this->deficiencia = $deficiencia;
+        $this->telefone = $telefone;
+    }
+    public function agendarConsulta() {}
+    public function cancelarConsulta() {}
+    public function visuHistConsultas() {}
+}
