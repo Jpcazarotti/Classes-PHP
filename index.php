@@ -270,3 +270,78 @@ class Psicologo {
         $this->especialidade = $especialidade;
     }
 }
+class Agenda
+{
+    private $agendamentos = array();
+
+    // Adiciona um agendamento à agenda
+    public function adicionarAgendamento(Agendamento $agendamento)
+    {
+        $this->agendamentos[] = $agendamento;
+    }
+
+    // Remove um agendamento da agenda
+    public function removerAgendamento(Agendamento $agendamento)
+    {
+        foreach ($this->agendamentos as $key => $value) {
+            if ($value === $agendamento) {
+                unset($this->agendamentos[$key]);
+                $this->agendamentos = array_values($this->agendamentos);
+                break;
+            }
+        }
+    }
+
+    // Atualiza um agendamento na agenda
+    public function atualizarAgendamento(Agendamento $antigo, Agendamento $novo)
+    {
+        foreach ($this->agendamentos as $key => $value) {
+            if ($value === $antigo) {
+                $this->agendamentos[$key] = $novo;
+                break;
+            }
+        }
+    }
+
+    // Visualiza todos os agendamentos da agenda
+    public function visualizarAgenda()
+    {
+        $agendaVisualizacao = "";
+        foreach ($this->agendamentos as $agendamento) {
+            $agendaVisualizacao .= "Status: " . $agendamento->getStatus() . "\n";
+            $agendaVisualizacao .= "Data: " . $agendamento->getData() . "\n";
+            $agendaVisualizacao .= "Hora: " . $agendamento->getHora() . "\n";
+            $agendaVisualizacao .= "Minuto: " . $agendamento->getMinuto() . "\n";
+            $agendaVisualizacao .= "Horários Disponíveis:\n";
+            foreach ($agendamento->getHorariosDisponiveis() as $horario) {
+                $agendaVisualizacao .= " - " . $horario->getHora() . ":" . $horario->getMinuto() . " (Disponível: " . ($horario->isDisponivel() ? "Sim" : "Não") . ")\n";
+            }
+            $agendaVisualizacao .= "\n";
+        }
+        return $agendaVisualizacao;
+    }
+
+    // Busca agendamentos por data
+    public function buscarPorData($data)
+    {
+        $resultados = array();
+        foreach ($this->agendamentos as $agendamento) {
+            if ($agendamento->getData() === $data) {
+                $resultados[] = $agendamento;
+            }
+        }
+        return $resultados;
+    }
+
+   
+    public function buscarPorStatus($status)
+    {
+        $resultados = array();
+        foreach ($this->agendamentos as $agendamento) {
+            if ($agendamento->getStatus() === $status) {
+                $resultados[] = $agendamento;
+            }
+        }
+        return $resultados;
+    }
+}
