@@ -16,7 +16,7 @@ class Usuario
         $this->tipoUsuario = $tipoUsuario;
     }
 
-    public function criar()
+    private function criar()
     {
         echo "Usuário $this->nome criado com sucesso!";
     }
@@ -36,7 +36,7 @@ class Usuario
         echo "Usuário $this->nome removido com sucesso!";
     }
 
-    public function deletar()
+    private function deletar()
     {
         echo "Usuário $this->nome deletado permanentemente!";
     }
@@ -68,12 +68,12 @@ class Intituicoes
         $this->tipoInstituicao = $tipoInstituicao;
     }
 
-    public function criarInstituicao()
+    private function criarInstituicao()
     {
         echo "Instituição $this->nome criada com sucesso!";
     }
 
-    public function editarInstituicao($novaInfo)
+    private function editarInstituicao($novaInfo)
     {
         $this->nome = $novaInfo['nome'];
         $this->endereco = $novaInfo['endereco'];
@@ -83,7 +83,7 @@ class Intituicoes
         echo "Instituição $this->nome editada com sucesso!";
     }
 
-    public function exibirInfo()
+    private function exibirInfo()
     {
         echo "
         Instituição: $this->nome<br>
@@ -334,5 +334,26 @@ class Agendamento
             }
         }
         return $resultados;
+    }
+}
+
+class ADM {
+    private $id;
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
+    private function gerenciarUsuarios(){
+        echo "Gerenciando Usuários...";
+    }
+
+    private function visuAgendamentos(){
+        echo "Visualizando Agendamentos...";
+    }
+
+    private function gerenciarSite(){
+        echo "Gerenciando Site...";
     }
 }
