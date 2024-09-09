@@ -94,6 +94,7 @@ class Intituicoes
         ";
     }
 }
+
 class Eventos
 {
     private $titulo;
@@ -177,7 +178,8 @@ class Eventos
         echo "Buscando eventos na data: $data...";
     }
 }
-class paciente
+
+class Paciente
 {
     private $id;
     private $deficiencia;
@@ -195,15 +197,13 @@ class paciente
 }
 
 class Psicologo {
-    // Atributos
     private $id;
     private $nome;
     private $email;
     private $CRP;
     private $especialidade;
     private $agenda = [];
- 
-    // Construtor
+
     public function __construct($id, $nome, $email, $CRP, $especialidade) {
         $this->id = $id;
         $this->nome = $nome;
@@ -211,23 +211,19 @@ class Psicologo {
         $this->CRP = $CRP;
         $this->especialidade = $especialidade;
     }
- 
-    // Métodos
+
     public function visualizarHorariosDisponiveis() {
-        // Exemplo de visualização de horários disponíveis na agenda
         foreach ($this->agenda as $horario) {
             echo "Horário: " . $horario['data'] . " - " . $horario['hora'] . "<br>";
         }
     }
  
     public function adicionarHorarioDisponivel($data, $hora) {
-        // Adiciona um horário disponível à agenda
         $this->agenda[] = ['data' => $data, 'hora' => $hora];
         echo "Horário disponível adicionado: $data às $hora.<br>";
     }
  
     public function visualizarAgenda() {
-        // Visualização completa da agenda
         if (empty($this->agenda)) {
             echo "Nenhum horário agendado.<br>";
         } else {
@@ -236,8 +232,7 @@ class Psicologo {
             }
         }
     }
- 
-    // Métodos getters e setters
+
     public function getNome() {
         return $this->nome;
     }
@@ -270,17 +265,16 @@ class Psicologo {
         $this->especialidade = $especialidade;
     }
 }
-class Agenda
+
+class Agendamento
 {
     private $agendamentos = array();
 
-    // Adiciona um agendamento à agenda
     public function adicionarAgendamento(Agendamento $agendamento)
     {
         $this->agendamentos[] = $agendamento;
     }
 
-    // Remove um agendamento da agenda
     public function removerAgendamento(Agendamento $agendamento)
     {
         foreach ($this->agendamentos as $key => $value) {
@@ -292,7 +286,6 @@ class Agenda
         }
     }
 
-    // Atualiza um agendamento na agenda
     public function atualizarAgendamento(Agendamento $antigo, Agendamento $novo)
     {
         foreach ($this->agendamentos as $key => $value) {
@@ -303,7 +296,6 @@ class Agenda
         }
     }
 
-    // Visualiza todos os agendamentos da agenda
     public function visualizarAgenda()
     {
         $agendaVisualizacao = "";
@@ -321,7 +313,6 @@ class Agenda
         return $agendaVisualizacao;
     }
 
-    // Busca agendamentos por data
     public function buscarPorData($data)
     {
         $resultados = array();
